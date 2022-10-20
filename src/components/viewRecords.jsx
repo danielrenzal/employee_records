@@ -26,11 +26,12 @@ class ViewRecords extends Component{
         }
     }  
 
-    
+    /* Method to close a modal. This method is also passed as props to other components  */
     handleCloseModal = () => {
         this.setState({showFormModal: false});
     }
 
+    /* Method to fetch data through json-server. Fetched data will be passed on to this.state.employees */
     handleFetchEmployees = async () => {
         const response = await fetch("http://localhost:8000/employees");
         const data = await response.json();
@@ -38,6 +39,10 @@ class ViewRecords extends Component{
         this.setState({employees: data});
     }
 
+    /* Method to fetched data based on searchInput.
+       Parameter 'e' is passed to use the preventDefault() method.
+       Parameter 'searchInput' should be an  exact first name. 
+       Fetched data will pe passed also to state.employees*/
     handleFilter = async (e, searchInput) => {
         e.preventDefault();
 
@@ -79,6 +84,7 @@ class ViewRecords extends Component{
                     <button className="btn btn-primary mb-4" onClick={()=>this.setState({showFormModal: true})}>Add Record</button>
                 </div>
                 
+                {/* Employees table */}
                 {employees && <EmployeesTable employees={employees} handleFetchEmployees={this.handleFetchEmployees} showConfirmDeleteModal={this.showConfirmDeleteModal}/>}
 
                 {showFormModal &&

@@ -24,6 +24,11 @@ class EmployeesTable extends Component{
         this.setState({showConfirmDeleteModal: false, showFormModal: false});
     }
 
+
+    /* Method to toggle edit modal.
+       Parameter 'employee' is an object which is used to pass on to state.formInputs, which will be
+       used to display employee informations on the edit modal.
+    */
     handleEditModal = (employee) => {
         this.setState({showFormModal: true, formInputs: employee});
     }
@@ -54,6 +59,8 @@ class EmployeesTable extends Component{
                                 <td>{employee.phone}</td>
                                 <td>{employee.salary}</td>
                                 <td>
+                                    {/* states here are used to display (on the modal) the employee to be
+                                        deleted */}
                                     <FaRegTrashAlt 
                                         style={{color: "#D32F2F", cursor: "pointer", marginRight: "10px"}}
                                         onClick={()=>this.setState({
